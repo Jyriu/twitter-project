@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/slices/authSlice';
@@ -7,7 +7,6 @@ import {
   createPost,
   deletePost,
 } from '../redux/slices/postSlice';
-import MyAxios from '../services/myAxios';
 import './dashboard.css';
 import { FaTrash } from 'react-icons/fa';
 
@@ -15,8 +14,9 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useSelector((state) => state.auth);
-  const { posts, status, error } = useSelector((state) => state.posts);
+  const { posts, status, error, hasMore } = useSelector((state) => state.posts); // Assurez-vous que `hasMore` est bien dans votre slice
   const [newPost, setNewPost] = useState('');
+  const [page, setPage] = useState(1); // Suivi de la page actuelle
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -24,9 +24,32 @@ const Dashboard = () => {
       navigate('/login');
     } else {
       console.log('Authenticated, user:', user);
-      dispatch(fetchPosts());
+      dispatch(fetchPosts({ page, limit: 10 })); // Charger les posts de la première page
     }
   }, [isAuthenticated, navigate, dispatch, user]);
+
+  // Fonction pour gérer l'infinite scroll
+  const handleScroll = useCallback(() => {
+    const bottom = window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 2;
+    if (bottom && hasMore && status !== 'loading') { // Vérifier si on peut encore charger des posts
+      setPage((prevPage) => prevPage + 1); // Passer à la page suivante
+    }
+  }, [hasMore, status]);
+
+  useEffect(() => {
+    // Ajouter un écouteur pour le défilement
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [handleScroll]);
+
+  useEffect(() => {
+    if (page > 1) {
+      // Lorsque la page change, on charge plus de posts
+      dispatch(fetchPosts({ page, limit: 10 }));
+    }
+  }, [page, dispatch]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -147,4 +170,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard; 
+export default Dashboard;

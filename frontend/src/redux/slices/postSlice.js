@@ -4,10 +4,12 @@ import MyAxios from '../../services/myAxios';
 // Thunks
 export const fetchPosts = createAsyncThunk(
   'posts/fetchPosts',
-  async (_, { rejectWithValue }) => {
+  async ({ page, limit }, { rejectWithValue }) => {
     try {
-      const response = await MyAxios.get('/api/forum/posts');
-      return response.data;
+      const response = await MyAxios.get('/api/forum/posts', {
+        params: { page, limit }
+      });
+      return response.data; // Inclut maintenant { posts, hasMore }
     } catch (err) {
       return rejectWithValue('Erreur lors du chargement des posts');
     }
@@ -43,6 +45,9 @@ const initialState = {
   posts: [],
   status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null,
+  page: 1,
+  limit: 10,
+  hasMore: true,  // Indicateur si plus de posts sont disponibles
 };
 
 const postSlice = createSlice({
@@ -51,6 +56,11 @@ const postSlice = createSlice({
   reducers: {
     clearError: (state) => {
       state.error = null;
+    },
+    resetPosts: (state) => {
+      state.posts = [];
+      state.page = 1;
+      state.hasMore = true;
     },
   },
   extraReducers: (builder) => {
@@ -62,7 +72,11 @@ const postSlice = createSlice({
       })
       .addCase(fetchPosts.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.posts = action.payload;
+        const { posts, hasMore } = action.payload;
+        
+        // Ajoute les nouveaux posts à la liste existante
+        state.posts = [...state.posts, ...posts];
+        state.hasMore = hasMore; // Met à jour l'indicateur hasMore
         state.error = null;
       })
       .addCase(fetchPosts.rejected, (state, action) => {
@@ -76,7 +90,7 @@ const postSlice = createSlice({
       })
       .addCase(createPost.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.posts.unshift(action.payload);
+        state.posts.unshift(action.payload); // Ajouter le nouveau post en haut de la liste
         state.error = null;
       })
       .addCase(createPost.rejected, (state, action) => {
@@ -90,7 +104,7 @@ const postSlice = createSlice({
       })
       .addCase(deletePost.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.posts = state.posts.filter(post => post._id !== action.payload);
+        state.posts = state.posts.filter(post => post._id !== action.payload); // Supprimer le post de la liste
         state.error = null;
       })
       .addCase(deletePost.rejected, (state, action) => {
@@ -100,5 +114,5 @@ const postSlice = createSlice({
   },
 });
 
-export const { clearError } = postSlice.actions;
-export default postSlice.reducer; 
+export const { clearError, resetPosts } = postSlice.actions;
+export default postSlice.reducer;
