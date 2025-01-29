@@ -1,0 +1,138 @@
+:root {
+  --twitter-blue: #1DA1F2;
+  --twitter-blue-hover: #1a8cd8;
+  --twitter-black: #14171A;
+  --twitter-dark-gray: #657786;
+  --twitter-light-gray: #AAB8C2;
+  --twitter-extra-light-gray: #E1E8ED;
+  --twitter-background: #ffffff;
+  --twitter-text: #E7E9EA;
+  --twitter-border: #2F3336;
+  --twitter-secondary-text: #71767B;
+  --twitter-error: #F4212E;
+  --twitter-input-bg: #202327;
+  --twitter-modal-bg: #16181C;
+}
+
+.login-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 2rem;
+}
+
+.login-container h2 {
+  font-size: 31px;
+  font-weight: 700;
+  color: var(--y-text);
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--y-text);
+}
+
+.form-group input {
+  padding: 12px;
+  background-color: var(--y-input-bg);
+  border: 1px solid var(--y-border);
+  border-radius: 4px;
+  font-size: 16px;
+  color: var(--y-text);
+  transition: all 0.2s;
+}
+
+.form-group input:focus {
+  border-color: var(--y-blue);
+  outline: none;
+}
+
+.error-message {
+  color: var(--y-error);
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.login-button {
+  background-color: var(--y-text);
+  color: var(--y-background);
+  padding: 15px;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  transition: all 0.5s ease;
+  margin-top: 12px;
+  transform: scale(1);
+}
+
+.login-button:hover {
+  opacity: 0.85;
+  transform: scale(1.02);
+}
+
+.login-button:disabled {
+  background-color: var(--y-secondary-text);
+  cursor: not-allowed;
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--y-secondary-text);
+  font-size: 15px;
+}
+
+.register-link span {
+  color: var(--y-blue);
+  cursor: pointer;
+  transition: all 0.5s ease;
+  position: relative;
+}
+
+.register-link span:hover {
+  text-decoration: underline;
+  color: var(--y-text);
+}
+
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.social-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  border: 1px solid var(--y-border);
+  background: transparent;
+  color: var(--y-text);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.social-button:hover {
+  background-color: var(--y-input-bg);
+} 

@@ -1,0 +1,385 @@
+/* Layout principal */
+.app-container {
+  display: grid;
+  grid-template-columns: 275px 1fr;
+  min-height: 100vh;
+  margin: 0 auto;
+  max-width: 1300px;
+}
+
+/* Sidebar gauche */
+.sidebar-left {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 0 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.main-nav {
+  margin-top: 12px;
+  width: 275px;
+}
+
+.nav-logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--y-text);
+  padding: 12px;
+  margin-bottom: 8px;
+}
+
+/* Feed principal */
+.dashboard-container {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+  border-left: 1px solid var(--y-border);
+  border-right: 1px solid var(--y-border);
+}
+
+.dashboard-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--y-border);
+  position: sticky;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+}
+
+.dashboard-header h1 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--y-text);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.user-info span {
+  color: var(--y-text);
+  font-weight: 500;
+}
+
+/* Zone de création de post */
+.post-form {
+  padding: 1rem;
+  border-bottom: 1px solid var(--y-border);
+  background-color: transparent;
+  transition: background-color 0.2s;
+}
+
+.post-form:focus-within {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.post-form-content {
+  display: flex;
+  gap: 12px;
+}
+
+.user-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: var(--y-border);
+  flex-shrink: 0;
+}
+
+.post-input-area {
+  flex-grow: 1;
+}
+
+.post-form textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 12px 0;
+  background-color: transparent;
+  border: none;
+  color: var(--y-text);
+  font-size: 20px;
+  resize: none;
+  line-height: 1.4;
+}
+
+.post-form textarea::placeholder {
+  color: var(--y-secondary-text);
+}
+
+.post-form textarea:focus {
+  outline: none;
+}
+
+.post-form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--y-border);
+}
+
+.post-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.action-icon {
+  color: var(--y-blue);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.action-icon:hover {
+  background-color: rgba(29, 155, 240, 0.1);
+}
+
+/* Posts */
+.post {
+  padding: 1rem;
+  border-bottom: 1px solid var(--y-border);
+  display: flex;
+  gap: 12px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.post:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.post-main-content {
+  flex-grow: 1;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.post-meta {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.username {
+  color: var(--y-text);
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.date {
+  color: var(--y-secondary-text);
+  font-size: 14px;
+}
+
+.post-content {
+  color: var(--y-text);
+  font-size: 15px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-top: 4px;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  max-width: 425px;
+}
+
+.post-action-button {
+  color: var(--y-secondary-text);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  transition: all 0.2s;
+}
+
+.post-action-button:hover {
+  color: var(--y-blue);
+  background-color: rgba(29, 155, 240, 0.1);
+}
+
+/* Sidebar droite */
+.sidebar-right {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 0 12px;
+}
+
+.search-container {
+  position: sticky;
+  top: 12px;
+  padding: 12px 0;
+  z-index: 2;
+}
+
+.search-bar {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: var(--y-input-bg);
+  border-radius: 9999px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background-color 0.2s;
+}
+
+.search-bar:focus-within {
+  background-color: transparent;
+  border: 1px solid var(--y-blue);
+}
+
+.search-input {
+  background: transparent;
+  border: none;
+  color: var(--y-text);
+  font-size: 15px;
+  width: 100%;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.logout-button {
+  background-color: transparent;
+  color: var(--y-error);
+  border: 1px solid var(--y-error);
+  padding: 6px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: rgba(244, 33, 46, 0.1);
+  color: var(--y-error);
+}
+
+.error-message {
+  color: var(--y-error);
+  padding: 1rem;
+  text-align: center;
+  background-color: rgba(244, 33, 46, 0.1);
+  margin: 1rem;
+  border-radius: 4px;
+}
+
+/* Bouton de déconnexion fixe */
+.logout-button-fixed {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  background-color: transparent;
+  color: var(--y-error);
+  border: 1px solid var(--y-error);
+  padding: 8px 20px;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  z-index: 2000;
+}
+
+.logout-button-fixed:hover {
+  background-color: rgba(244, 33, 46, 0.1);
+  color: var(--y-error);
+}
+
+/* Style du profil utilisateur */
+.user-profile {
+  padding: 16px;
+  border-bottom: 1px solid var(--y-border);
+}
+
+.user-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-info-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.user-name {
+  color: var(--y-text);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.user-handle {
+  color: var(--y-secondary-text);
+  font-size: 14px;
+}
+
+/* Style du bouton Poster */
+.post-form button[type="submit"] {
+  background-color: var(--y-blue);
+  color: #FFFFFF;
+  padding: 8px 24px;
+  border: none;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.post-form button[type="submit"]:hover {
+  background-color: rgb(26, 140, 216);
+}
+
+.post-form button[type="submit"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--y-blue);
+}
+
+/* Suppression des anciens styles */
+.logout-button {
+  display: none;
+}
+
+.delete-post-button {
+  background: none;
+  border: none;
+  color: var(--y-secondary-text);
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all 0.2s;
+  opacity: 0;
+}
+
+.post:hover .delete-post-button {
+  opacity: 1;
+}
+
+.delete-post-button:hover {
+  color: var(--y-error);
+  background-color: rgba(244, 33, 46, 0.1);
+} 

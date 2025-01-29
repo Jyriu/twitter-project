@@ -1,0 +1,105 @@
+:root {
+  --twitter-blue: #1DA1F2;
+  --twitter-blue-hover: #1a8cd8;
+  --twitter-black: #14171A;
+  --twitter-dark-gray: #657786;
+  --twitter-light-gray: #AAB8C2;
+  --twitter-extra-light-gray: #E1E8ED;
+  --twitter-background: #ffffff;
+}
+
+.register-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 2rem;
+}
+
+.register-container h2 {
+  font-size: 31px;
+  font-weight: 700;
+  color: var(--y-text);
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--y-text);
+}
+
+.form-group input {
+  padding: 12px;
+  background-color: var(--y-input-bg);
+  border: 1px solid var(--y-border);
+  border-radius: 4px;
+  font-size: 16px;
+  color: var(--y-text);
+  transition: all 0.2s;
+}
+
+.form-group input:focus {
+  border-color: var(--y-blue);
+  outline: none;
+}
+
+.error-message {
+  color: var(--y-error);
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.register-button {
+  background-color: var(--y-text);
+  color: var(--y-background);
+  padding: 15px;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  transition: all 0.5s ease;
+  margin-top: 12px;
+  transform: scale(1);
+}
+
+.register-button:hover {
+  opacity: 0.85;
+  transform: scale(1.02);
+}
+
+.register-button:disabled {
+  background-color: var(--y-secondary-text);
+  cursor: not-allowed;
+}
+
+.login-link {
+  text-align: center;
+  margin-top: 20px;
+  color: var(--y-secondary-text);
+  font-size: 15px;
+}
+
+.login-link span {
+  color: var(--y-blue);
+  cursor: pointer;
+  transition: all 0.5s ease;
+  position: relative;
+}
+
+.login-link span:hover {
+  text-decoration: underline;
+  color: var(--y-text);
+} 
