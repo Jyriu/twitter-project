@@ -1,10 +1,8 @@
 import axios from 'axios';
-import { store } from '../redux/store';
-import { logout } from '../redux/slices/authSlice';
-import { getCookie } from './cookieService';
+import { getCookie, removeCookie } from './cookieService';
 
 const MyAxios = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:3001',
+  baseURL: 'http://localhost:3001',
   timeout: 5000,
   headers: {
     'Content-Type': 'application/json'
@@ -63,11 +61,8 @@ MyAxios.interceptors.response.use(
 
     // Gestion des erreurs d'authentification
     if (error.response?.status === 401) {
-      store.dispatch(logout());
-      // Éviter une boucle infinie de redirections
-      if (!window.location.pathname.includes('/login')) {
-        window.location.href = '/login';
-      }
+      removeCookie('token');
+      window.location.href = '/login';
     }
 
     // Gestion des erreurs de réseau
