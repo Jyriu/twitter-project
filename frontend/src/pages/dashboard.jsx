@@ -9,6 +9,7 @@ import {
 } from '../redux/slices/postSlice';
 import './dashboard.css';
 import { FaTrash } from 'react-icons/fa';
+import ChatDrawer from '../components/ChatDrawer';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -166,6 +167,8 @@ const Dashboard = () => {
           ))}
         </div>
       </main>
+
+      <ChatDrawer />
     </div>
   );
 };

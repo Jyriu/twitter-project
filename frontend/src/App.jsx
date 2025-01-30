@@ -5,6 +5,7 @@ import { store } from './redux/store';
 import Login from './pages/login';
 import Register from './pages/register';
 import Dashboard from './pages/dashboard';
+import Chat from './components/Chat';
 
 // Composant pour protéger les routes
 const PrivateRoute = ({ children }) => {
@@ -18,7 +19,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register />} />é
           <Route 
             path="/dashboard" 
             element={
@@ -28,6 +29,7 @@ const App = () => {
             } 
           />
           <Route path="/" element={<Navigate to="/login" />} />
+          <Route path="/chat/:receiverId" element={<Chat />} />
         </Routes>
       </BrowserRouter>
     </Provider>
