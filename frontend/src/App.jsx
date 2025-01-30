@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import Login from './pages/login';
@@ -16,10 +16,10 @@ const PrivateRoute = ({ children }) => {
 const App = () => {
   return (
     <Provider store={store}>
-      <BrowserRouter>
+      <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />é
+          <Route path="/register" element={<Register />} />
           <Route 
             path="/dashboard" 
             element={
@@ -31,7 +31,7 @@ const App = () => {
           <Route path="/" element={<Navigate to="/login" />} />
           <Route path="/chat/:receiverId" element={<Chat />} />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </Provider>
   );
 };

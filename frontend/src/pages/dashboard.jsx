@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/slices/authSlice';
 import {
@@ -15,19 +15,17 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useSelector((state) => state.auth);
-  const { posts, status, error, hasMore } = useSelector((state) => state.posts); // Assurez-vous que `hasMore` est bien dans votre slice
+  const { posts, status, error, hasMore } = useSelector((state) => state.posts);
   const [newPost, setNewPost] = useState('');
-  const [page, setPage] = useState(1); // Suivi de la page actuelle
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
-    if (!isAuthenticated) {
-      console.log('Not authenticated, redirecting to login');
+    if (!isAuthenticated || !user) {
       navigate('/login');
-    } else {
-      console.log('Authenticated, user:', user);
-      dispatch(fetchPosts({ page, limit: 10 })); // Charger les posts de la première page
+      return;
     }
-  }, [isAuthenticated, navigate, dispatch, user]);
+    dispatch(fetchPosts({ page, limit: 10 }));
+  }, [isAuthenticated, user, navigate, dispatch, page]);
 
   // Fonction pour gérer l'infinite scroll
   const handleScroll = useCallback(() => {
@@ -80,6 +78,11 @@ const Dashboard = () => {
       }
     }
   };
+
+  // Ajout de cette vérification avant le rendu
+  if (!isAuthenticated || !user) {
+    return <Navigate to="/login" />;
+  }
 
   return (
     <div className="app-container">

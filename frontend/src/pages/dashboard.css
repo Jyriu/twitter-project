@@ -59,7 +59,8 @@
 .user-info {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
+  color: #000;
 }
 
 .user-info span {
@@ -174,8 +175,8 @@
 }
 
 .username {
-  color: var(--y-text);
-  font-weight: 700;
+  color: #000;
+  font-weight: 500;
   font-size: 15px;
 }
 
@@ -397,12 +398,12 @@
 
 .chat-conversations {
   width: 280px;
-  background-color: var(--y-background);
+  background-color: white;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   border-radius: 8px 8px 0 0;
   overflow: hidden;
   border: 1px solid var(--y-border);
-  color: var(--y-text);
+  color: #000;
 }
 
 .chat-header {
@@ -419,8 +420,8 @@
 .chat-messages-container {
   max-height: 400px;
   overflow-y: auto;
-  background-color: var(--y-background);
-  color: var(--y-text);
+  background-color: white;
+  color: #000;
 }
 
 .chat-conversation-item {
@@ -434,7 +435,7 @@
 }
 
 .chat-conversation-item:hover {
-  background-color: rgba(255, 255, 255, 0.03);
+  background-color: rgba(0, 0, 0, 0.03);
 }
 
 .chat-avatar {
@@ -451,7 +452,7 @@
 
 .chat-message-preview {
   font-size: 0.8em;
-  color: var(--y-secondary-text);
+  color: #666;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -485,8 +486,8 @@
     padding: 8px;
     border: 1px solid var(--y-border);
     border-radius: 20px;
-    background-color: var(--y-input-bg);
-    color: var(--y-text);
+    background-color: white;
+    color: #000;
 }
 
 .search-results {
@@ -502,10 +503,11 @@
     padding: 8px;
     cursor: pointer;
     transition: background-color 0.2s;
+    color: #000;
 }
 
 .search-result-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(0, 0, 0, 0.03);
 }
 
 /* Styles pour la section des utilisateurs en ligne */
@@ -516,7 +518,7 @@
 
 .section-title {
     font-size: 0.9em;
-    color: var(--y-secondary-text);
+    color: #666;
     margin-bottom: 10px;
     padding: 0 10px;
 }
@@ -530,13 +532,7 @@
 }
 
 .online-user-item:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    background-color: rgba(0, 0, 0, 0.03);
 }
 
 .online-indicator {
@@ -548,7 +544,7 @@
 
 .no-users-online {
     text-align: center;
-    color: var(--y-secondary-text);
+    color: #666;
     padding: 10px;
     font-size: 0.9em;
 } 

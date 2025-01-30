@@ -31,9 +31,9 @@ export const register = createAsyncThunk(
 
 const initialState = {
   user: null,
-  token: getCookie('token'),
-  isAuthenticated: !!getCookie('token'),
-  status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
+  token: null,
+  isAuthenticated: false,
+  status: 'idle',
   error: null
 };
 
@@ -55,16 +55,15 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Login
       .addCase(login.pending, (state) => {
         state.status = 'loading';
         state.error = null;
       })
       .addCase(login.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.isAuthenticated = true;
         state.user = action.payload.user;
         state.token = action.payload.token;
+        state.isAuthenticated = true;
         state.error = null;
         setCookie('token', action.payload.token);
       })
@@ -72,24 +71,9 @@ const authSlice = createSlice({
         state.status = 'failed';
         state.error = action.payload;
         state.isAuthenticated = false;
-      })
-      // Register
-      .addCase(register.pending, (state) => {
-        state.status = 'loading';
-        state.error = null;
-      })
-      .addCase(register.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.isAuthenticated = true;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
-        state.error = null;
-        setCookie('token', action.payload.token);
-      })
-      .addCase(register.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.payload;
-        state.isAuthenticated = false;
+        state.user = null;
+        state.token = null;
+        removeCookie('token');
       });
   }
 });
